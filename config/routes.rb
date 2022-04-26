@@ -19,7 +19,13 @@ Rails.application.routes.draw do
     resource :favorites, only: [:create, :destroy]
   end    
     
-  resources :users  # 追加
-
+  resources :users  do
+    resource :relationships, only: [:create, :destroy]
+    get :follows, on: :member
+    get :followers, on: :member
+    
+    end
+  
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
